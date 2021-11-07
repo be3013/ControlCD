@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\Assets\Home.svg" />
+    <Content Remove="wwwroot\Assets\Store.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Assets\Home.svg" />
+    <None Include="wwwroot\Assets\Logo.svg" />
+    <None Include="wwwroot\Assets\Store.svg" />
+  </ItemGroup>
+
+</Project>

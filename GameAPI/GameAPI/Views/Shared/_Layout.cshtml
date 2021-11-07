@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <style>
+
+        .linha {
+            padding: 5px;
+            padding-left: 35px;
+            height: 50px;
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        .filho-texto {
+            margin: auto;
+            padding: 10px;
+            text-align: left;
+            vertical-align: middle;
+            color: #A4A6B3;
+            font-size:20px;
+            font-weight: bold;
+            min-height: 100%;
+        }
+
+    </style>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GameAPI</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+
+    <div style="width: 100%; height:100% ; overflow: hidden; position: relative">
+        <div style="width: 25%; height: 100vh ;float: left; background-color: #363740">
+            <div style="color: #838591; width: 100%; text-align: center; vertical-align: middle; margin-top:30px">
+            
+                <div style="height: 50px;">
+
+                    <div style="padding: 5px; width: 30%; max-height: 100%; float: left; ">
+                        <img src="~/Assets/Logo.svg" style="height: 50px"/>
+                    </div>
+                    <div style="width: 70%; max-height:100%; float:left">
+                        <div style="font-family: Arial; color: #A4A6B3; font-weight: bolder; font-size: 30px; text-align: left ">ControlCD</div>
+                        <div style="font-family: Arial; color: #A4A6B3; font-weight: bolder; font-size: 12px; text-align: left">As melhores ofertas ao seu alcance!</div>
+                    </div>
+
+                </div>
+                
+                <div style="margin-top:60px; padding:10px;">
+
+                    <div class="linha">
+                        <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Home.png"/></div>
+                        <div class="filho-texto" style="float: right; width: 90%"> Início</div>
+                    </div>
+                    <hr />
+                    <div class="linha">
+                        <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Store.png" /></div>
+                        <div class="filho-texto" style="float: right; width: 90%"> Lojas</div>
+                    </div>
+                    <hr />
+                    <div class="linha">
+                        <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Game.png" /></div>
+                        <div class="filho-texto" style="float: right; width: 90%"> Jogos</div>
+                    </div>
+                    <hr />
+                    <div class="linha">
+                        <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Deal.png" /></div>
+                        <div class="filho-texto" style="float: right; width: 90%"> Promoções</div>
+                    </div>
+                    <hr />
+                    <div class="linha">
+                        <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Ranking.png" /></div>
+                        <div class="filho-texto" style="float: right; width: 90%"> Rank de lojas</div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div style="width: 75%; height: 100vh">
+            <main role="main" class="pb-3">
+                @RenderBody()
+            </main>
+        </div>
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
