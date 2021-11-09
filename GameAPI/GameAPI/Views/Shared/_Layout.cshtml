@@ -58,7 +58,7 @@
                     <hr />
                     <div class="linha">
                         <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Store.png" /></div>
-                        <div class="filho-texto" style="float: right; width: 90%"> Lojas</div>
+                        <div class="filho-texto" style="float: right; width: 90%"><a asp-action="Index" asp-controller="Loja">Lojas</a></div>
                     </div>
                     <hr />
                     <div class="linha">
@@ -80,7 +80,7 @@
 
             </div>
         </div>
-        <div style="width: 75%; height: 100vh">
+        <div style="width: 75%; height: 100vh; float:right">
             <main role="main" class="pb-3">
                 @RenderBody()
             </main>

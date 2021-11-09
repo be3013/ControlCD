@@ -10,9 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Assets\Home.svg" />
     <None Include="wwwroot\Assets\Logo.svg" />
-    <None Include="wwwroot\Assets\Store.svg" />
   </ItemGroup>
 
 </Project>
