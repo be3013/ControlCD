@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<GameAPI.Models.Store>
+
+@{
     ViewData["Title"] = "Lojas";
  }
 
@@ -57,10 +59,12 @@
     <br />
     <div style="height: 40px">
         <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
-        <input type="text" class="form-control" name="Nome" style="float:left; margin-right: 10px" />
-        <button type="submit" class="btn">
-            <img src="~/Assets/searchicon.png" style="height:25px" />
-        </button>
+        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome da loja..." class="form-control" name="Nome" style="float:left; margin-right: 10px" />
+            <button type="submit" class="btn">
+                <img src="~/Assets/searchicon.png" style="height:25px" />
+            </button>
+        </form>
     </div>
     <br />
 
@@ -75,7 +79,7 @@
                         Logo
                     </th>
                     <th class="text-center">
-                        Promoções em vigor
+                        Jogos
                     </th>
                     <th class="text-center">
                         Promoções totais
@@ -86,137 +90,58 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td class="text-center align-middle">
-                        EAa
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width: 30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        asd
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        y
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        x
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        q
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        q
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="text-center align-middle">
-                        q
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/Store.png" style="width:30px; height:30px;" />
-                    </td>
-                    <td class="text-center align-middle">
-                        2
-                    </td>
-                    <td class="text-center align-middle">
-                        1000
-                    </td>
-                    <td class="text-center align-middle">
-                        <img src="~/Assets/positive.png" style="width:30px; height:30px;" />
-                    </td>
-                </tr>
+                @if (Model.ToList().Count > 0)
+                {
+                    foreach (var store in Model)
+                    {
+                        <tr>
+                            <td class="text-center align-middle">
+                                @store.NOME
+                            </td>
+                            <td class="text-center align-middle">
+                                <img src="@store.LOGO" style="width:30px;" />
+                            </td>
+                            <td class="text-center align-middle">
+                                @store.GAMES
+                            </td>
+                            <td class="text-center align-middle">
+                                @store.DEALS.Count
+                            </td>
+                            <td class="text-center align-middle">
+                                @if (store.IS_ACTIVE)
+                                {
+                                    <img src="~/Assets/positive.png" style="width: 30px;" />
+                                }
+                                else
+                                {
+                                    <img src="~/Assets/negative.png" style="width: 30px;" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
             </tbody>
         </table>
 
         <div style="margin-top:10px; margin-right:10px ; float:right">
-            <button type="submit" class="btn" style="float:left">
-                <img src="~/Assets/ArrowLeft.png" style="height:25px" />
-            </button>
-            <span class="text-md-center" style="float:left; height:40px; padding:10px">Página 1 de 25</span>
-            <button type="submit" class="btn" style="float:left">
-                <img src="~/Assets/ArrowRight.png" style="height:25px" />
-            </button>
-        </div>
+            @if ((Model.ToList()[0].ID_STORE + 7) / 7 != 1)
+            {
+                <form asp-controller="Loja" asp-action="Index" style="float:left">
+                    <button asp-controller="Loja" asp-action="Index" name="Page" value="@((Model.ToList()[0].ID_STORE + 7)/7-1)" type="submit" class="btn">
+                        <img src="~/Assets/ArrowLeft.png" style="height:25px" />
+                    </button>
+                </form>
+            }
+            <span class="text-md-center" style="float:left; height:40px; padding:10px">Página @((Model.ToList()[0].ID_STORE + 7)/7) de 5</span>
+            @if ((Model.ToList()[0].ID_STORE + 7) / 7 != 5)
+            {
+                <form asp-controller="Loja" asp-action="Index" style="float:left">
+                    <button name="Page" value="@((Model.ToList()[0].ID_STORE + 7)/7+1)" type="submit" class="btn">
+                        <img src="~/Assets/ArrowRight.png" style="height:25px" />
+                    </button>
+                </form>
+            }
+            </div>
     </div>
 
 </div>
