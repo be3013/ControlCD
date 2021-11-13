@@ -1,0 +1,83 @@
+﻿@model IEnumerable<GameAPI.Models.Loja>
+
+<style>
+    .infoSito {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+</style>
+
+<br />
+<br />
+<h1>Rank de lojas</h1>
+<h5>Top 3 lojas</h5>
+<br />
+
+<div class="infoSito">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.ToList()[0].Nome</h5>
+            <h2 class="card-text">1ª</h2>
+        </div>
+    </div>
+
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.ToList()[1].Nome</h5>
+            <h2 class="card-text"> 2ª</h2>
+        </div>
+    </div>
+
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@Model.ToList()[2].Nome</h5>
+            <h2 class="card-text">3ª</h2>
+        </div>
+    </div>
+</div>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                #
+            </th>
+            <th>
+                Nome
+            </th>
+            <th>
+                Promoções em vigor
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PromocaoTotal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativa)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromocaoVigor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PromocaoTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativa)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,63 @@
+﻿@model GameAPI.Controllers.HomeController.HomeViewModel
+<style>
+    .promocoes {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        flex-wrap:wrap;
+        flex-direction:row;
+    }
+
+    .infoSito {
+        display: flex;
+        width: 100%;
+        justify-content: space-between;
+    }
+</style>
+
+<div class="infoSito">
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Quantidade de jogos</h5>
+            <h2 class="card-text">@Model.QtdJogos</h2>
+        </div>
+    </div>
+
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Quantidade de promoções</h5>
+            <h2 class="card-text"> @Model.QtdJogosPromocoes</h2>
+        </div>
+    </div>
+
+    <div class="card text-center" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">Quantidade de lojas</h5>
+            <h2 class="card-text"> @Model.QtdLojas</h2>
+        </div>
+    </div>
+</div>
+
+<br/><br/>
+<h1>Início</h1>
+<h5>Top promoções</h5>
+<br/>
+
+<div class="promocoes">
+    @{
+        foreach (Promocao p in Model.Promocoes)
+        {
+            <div class="card" style="width: 18rem; margin-bottom:3%;">
+                <img class="card-img-top" src="~/Assets/gameImg.jpg" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@p.Nome</h5>
+                    <p>@p.Descricao</p>
+                </div>
+                <div class="card-body">
+                    <a class="text-primary"><strong>R$@p.ValorDesconto</strong></a>
+                    <a class="text-danger"><del>R$@p.ValorOriginal</del></a>
+                </div>
+            </div>
+        }
+    }
+</div>
