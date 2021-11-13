@@ -1,0 +1,67 @@
+@model IEnumerable<GameAPI.Models.Store>
+
+@{
+    ViewData["Title"] = "Lojas";
+}
+
+<style>
+    .main {
+        margin: 25px;
+        overflow: auto;
+    }
+
+    input[type=text] {
+        width: 40%;
+        height: 40px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        padding: 12px 12px 12px 12px;
+    }
+
+</style>
+
+<div class="main">
+    <h1>Promoções</h1>
+    <br />
+    <div style="height: 40px">
+        <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
+        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome da loja..." class="form-control" name="Nome"
+                style="float:left; margin-right: 10px" />
+            <button type="submit" class="btn">
+                <img src="~/Assets/searchicon.png" style="height:25px" />
+            </button>
+        </form>
+    </div>
+    <br />
+    <div style="height: 40px">
+        <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
+        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome do jogo..." class="form-control" name="Nome"
+                style="float:left; margin-right: 10px" />
+            <button type="submit" class="btn">
+                <img src="~/Assets/searchicon.png" style="height:25px" />
+            </button>
+        </form>
+    </div>
+    <br />
+    <div >
+        <section style="display: flex; flex-wrap: wrap; justify-content: space-around; ">
+            @for (int i = 200; i < 208; i++)
+            {
+                <div style="flex: 0 1 24%; box-shadow: 5px 5px 5px ; margin:5px">
+                    <img style="width:253px; height:220px; " src="https://http.cat/@(@i)" />
+                    <p style="font-size: 16px; font-weight: bold">content for card @i</p>
+                    <div>
+                        <span style="color: green; font-weight: bold">R$@((i-100)),00</span> 
+                        <span style="color: red; font-weight: bold">R$@((i+100)),00</span>
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+
+</div>
