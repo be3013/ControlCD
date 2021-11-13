@@ -22,6 +22,8 @@ namespace GameAPI.Controllers
             var listLojas = _context.Stores.OrderBy(p => p.ID_STORE).ToList();
             List<Store> pagestore = new List<Store>();
 
+            if (Page == 0) Page = 1;
+
             if (!string.IsNullOrEmpty(Nome))
             {
                 if(listLojas.Count > 0) 
