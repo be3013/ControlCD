@@ -10,9 +10,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\Assets\Home.svg" />
     <None Include="wwwroot\Assets\Logo.svg" />
-    <None Include="wwwroot\Assets\Store.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.21" />
+    <PackageReference Include="Oracle.EntityFrameworkCore" Version="3.19.130" />
   </ItemGroup>
 
   <ItemGroup>
