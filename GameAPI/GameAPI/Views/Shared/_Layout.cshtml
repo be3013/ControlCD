@@ -34,7 +34,7 @@
 <body>
 
     <div style="width: 100%; height:100% ; overflow: hidden; position: relative">
-        <div style="width: 25%; height: 100vh ;float: left; background-color: #363740">
+        <div style="width: 25%; height: 100vh ;float: left; background-color: #363740; position: fixed">
             <div style="color: #838591; width: 100%; text-align: center; vertical-align: middle; margin-top:30px">
             
                 <div style="height: 50px;">
@@ -68,7 +68,7 @@
                     <hr />
                     <div class="linha">
                         <div class="filho-texto" style="float: left; width: 10%"><img width="30" style="float: right" src="~/Assets/Deal.png" /></div>
-                        <div class="filho-texto" style="float: right; width: 90%"> Promoções</div>
+                        <div class="filho-texto" style="float: right; width: 90%"><form asp-controller="Deal" asp-action="Index"><button class="btn" name="Page" value="1" style="color: #A4A6B3; font-size: 20px; font-weight: bold; padding: 0px">Promoções</button></form></div>
                     </div>
                     <hr />
                     <div class="linha">
