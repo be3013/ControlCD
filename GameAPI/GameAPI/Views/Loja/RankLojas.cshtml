@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GameAPI.Models.Loja>
+﻿@model IEnumerable<GameAPI.Models.Store>
 
 <style>
     .infoSito {
@@ -17,44 +17,41 @@
 <div class="infoSito">
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">@Model.ToList()[0].Nome</h5>
+            <h5 class="card-title">@Model.ToList()[0].NOME</h5>
             <h2 class="card-text">1ª</h2>
         </div>
     </div>
 
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">@Model.ToList()[1].Nome</h5>
+            <h5 class="card-title">@Model.ToList()[1].NOME</h5>
             <h2 class="card-text"> 2ª</h2>
         </div>
     </div>
 
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
-            <h5 class="card-title">@Model.ToList()[2].Nome</h5>
+            <h5 class="card-title">@Model.ToList()[2].NOME</h5>
             <h2 class="card-text">3ª</h2>
         </div>
     </div>
 </div>
 
 
-<table class="table">
+<table class="table text-center">
     <thead>
         <tr>
-            <th>
-                #
-            </th>
             <th>
                 Nome
             </th>
             <th>
-                Promoções em vigor
+                Logo
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.PromocaoTotal)
+                Promoções totais
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Ativa)
+                Status
             </th>
         </tr>
     </thead>
@@ -63,19 +60,23 @@
         {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Logo)
+                    @Html.DisplayFor(modelItem => item.NOME)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Nome)
+                    <img style="width: 30px; height:30px" src="@item.LOGO">
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PromocaoVigor)
+                    @Html.DisplayFor(modelItem => item.DEALS.Count)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.PromocaoTotal)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Ativa)
+                    @if (item.IS_ACTIVE)
+                    {
+                        <img src="~/Assets/positive.png" style="width: 30px;" />
+                    }
+                    else
+                    {
+                        <img src="~/Assets/negative.png" style="width: 30px;" />
+                    }
                 </td>
             </tr>
         }
