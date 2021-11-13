@@ -1,0 +1,147 @@
+﻿@model IEnumerable<GameAPI.Models.Store>
+
+@{
+    ViewData["Title"] = "Lojas";
+ }
+
+<style>
+
+    .main{
+        margin:25px;
+    }
+
+    .table-round-corner {
+        margin-top: 15px;
+        width: 100%;
+        text-align: center;
+        border-collapse: collapse;
+        overflow: hidden;
+    }
+
+    table td {
+        color: black;
+        padding: 5px;
+        font-weight:normal;
+    }
+
+    table th {
+        color: black;
+        font-weight: normal;
+        text-align: center;
+        padding: 10px;
+        font-family:Arial;
+        font-weight:lighter;
+        font-size: 20px;
+    }
+
+    input[type=text] {
+        width: 40%;
+        height: 40px;
+        box-sizing: border-box;
+        border: 2px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        background-color: white;
+        padding: 12px 12px 12px 12px;
+    }
+
+    .content{
+        background-color:lightgray;
+        width:100%;
+        border-radius:15px;
+        height:400px;
+    }
+
+</style>
+
+<div class="main">
+    <h1>Lojas</h1>
+    <br />
+    <div style="height: 40px">
+        <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
+        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome da loja..." class="form-control" name="Nome" style="float:left; margin-right: 10px" />
+            <button type="submit" class="btn">
+                <img src="~/Assets/searchicon.png" style="height:25px" />
+            </button>
+        </form>
+    </div>
+    <br />
+
+    <div class="content">
+        <table class="table-round-corner">
+            <thead>
+                <tr>
+                    <th class="text-center">
+                        Nome
+                    </th>
+                    <th class="text-center">
+                        Logo
+                    </th>
+                    <th class="text-center">
+                        Jogos
+                    </th>
+                    <th class="text-center">
+                        Promoções totais
+                    </th>
+                    <th class="text-center">
+                        Está ativa?
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model.ToList().Count > 0)
+                {
+                    foreach (var store in Model)
+                    {
+                        <tr>
+                            <td class="text-center align-middle">
+                                @store.NOME
+                            </td>
+                            <td class="text-center align-middle">
+                                <img src="@store.LOGO" style="width:30px;" />
+                            </td>
+                            <td class="text-center align-middle">
+                                @store.GAMES
+                            </td>
+                            <td class="text-center align-middle">
+                                @store.DEALS.Count
+                            </td>
+                            <td class="text-center align-middle">
+                                @if (store.IS_ACTIVE)
+                                {
+                                    <img src="~/Assets/positive.png" style="width: 30px;" />
+                                }
+                                else
+                                {
+                                    <img src="~/Assets/negative.png" style="width: 30px;" />
+                                }
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <div style="margin-top:10px; margin-right:10px ; float:right">
+            @if ((Model.ToList()[0].ID_STORE + 7) / 7 != 1)
+            {
+                <form asp-controller="Loja" asp-action="Index" style="float:left">
+                    <button asp-controller="Loja" asp-action="Index" name="Page" value="@((Model.ToList()[0].ID_STORE + 7)/7-1)" type="submit" class="btn">
+                        <img src="~/Assets/ArrowLeft.png" style="height:25px" />
+                    </button>
+                </form>
+            }
+            <span class="text-md-center" style="float:left; height:40px; padding:10px">Página @((Model.ToList()[0].ID_STORE + 7)/7) de 5</span>
+            @if ((Model.ToList()[0].ID_STORE + 7) / 7 != 5)
+            {
+                <form asp-controller="Loja" asp-action="Index" style="float:left">
+                    <button name="Page" value="@((Model.ToList()[0].ID_STORE + 7)/7+1)" type="submit" class="btn">
+                        <img src="~/Assets/ArrowRight.png" style="height:25px" />
+                    </button>
+                </form>
+            }
+            </div>
+    </div>
+
+</div>
