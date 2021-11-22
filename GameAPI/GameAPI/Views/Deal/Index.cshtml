@@ -1,4 +1,4 @@
-@model IEnumerable<GameAPI.Models.Store>
+@model IEnumerable<GameAPI.Models.Deal>
 
 @{
     ViewData["Title"] = "Lojas";
@@ -28,9 +28,9 @@
     <br />
     <div style="height: 40px">
         <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
-        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
-            <input type="text" placeholder="Insira o nome da loja..." class="form-control" name="Nome"
-                style="float:left; margin-right: 10px" />
+        <form asp-controller="Deal" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome da loja..." class="form-control" name="NomeLoja"
+                   style="float:left; margin-right: 10px" />
             <button type="submit" class="btn">
                 <img src="~/Assets/searchicon.png" style="height:25px" />
             </button>
@@ -39,29 +39,47 @@
     <br />
     <div style="height: 40px">
         <h3 style="float: left; margin-right:10px; height: 30px">Pesquisar: </h3>
-        <form asp-controller="Loja" asp-action="Index" style="float:left; width: 80%">
-            <input type="text" placeholder="Insira o nome do jogo..." class="form-control" name="Nome"
-                style="float:left; margin-right: 10px" />
+        <form asp-controller="Deal" asp-action="Index" style="float:left; width: 80%">
+            <input type="text" placeholder="Insira o nome do jogo..." class="form-control" name="NomeJogo"
+                   style="float:left; margin-right: 10px" />
             <button type="submit" class="btn">
                 <img src="~/Assets/searchicon.png" style="height:25px" />
             </button>
         </form>
     </div>
     <br />
-    <div >
+    <div>
         <section style="display: flex; flex-wrap: wrap; justify-content: space-around; ">
-            @for (int i = 200; i < 208; i++)
+            @foreach (Deal deal in Model)
             {
                 <div style="flex: 0 1 24%; box-shadow: 5px 5px 5px ; margin:5px">
-                    <img style="width:253px; height:220px; " src="https://http.cat/@(@i)" />
-                    <p style="font-size: 16px; font-weight: bold">content for card @i</p>
+                    <img style="width:253px; height:220px; " src="@deal.Game.THUMBNAIL_LINK" />
+                    <p style="font-size: 16px; font-weight: bold">@deal.Game.TITLE</p>
                     <div>
-                        <span style="color: green; font-weight: bold">R$@((i-100)),00</span> 
-                        <span style="color: red; font-weight: bold">R$@((i+100)),00</span>
+                        <span style="color: green; font-weight: bold">R$@(((float)deal.SALE_PRICE))</span>
+                        <span style="color: red; font-weight: bold">R$@(deal.Game.PRICE)</span>
                     </div>
                 </div>
             }
         </section>
     </div>
-
+    <div style="margin-top:10px; margin-right:10px ; float:right">
+        @if ((Model.ToList()[0].ID_DEAL + 9) / 9 != 1)
+        {
+            <form asp-controller="Deal" asp-action="Index" style="float:left">
+                <button asp-controller="Deal" asp-action="Index" name="Page" value="@((Model.ToList()[0].ID_DEAL + 9)/9-1)" type="submit" class="btn">
+                    <img src="~/Assets/ArrowLeft.png" style="height:25px" />
+                </button>
+            </form>
+        }
+        <span class="text-md-center" style="float:left; height:40px; padding:10px">Página @((Model.ToList()[0].ID_DEAL + 9) /9)</span>
+        @if ((Model.ToList()[0].ID_DEAL + 9) / 9 != 5)
+        {
+            <form asp-controller="Deal" asp-action="Index" style="float:left">
+                <button name="Page" value="@((Model.ToList()[0].ID_DEAL + 9)/9+1)" type="submit" class="btn">
+                    <img src="~/Assets/ArrowRight.png" style="height:25px" />
+                </button>
+            </form>
+        }
+    </div>
 </div>
