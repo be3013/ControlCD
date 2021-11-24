@@ -26,7 +26,7 @@
     <div class="card text-center" style="width: 18rem;">
         <div class="card-body">
             <h5 class="card-title">Quantidade de promoções</h5>
-            <h2 class="card-text"> @Model.QtdJogosPromocoes</h2>
+            <h2 class="card-text"> @Model.QtdPromocoes</h2>
         </div>
     </div>
 
@@ -45,17 +45,16 @@
 
 <div class="promocoes">
     @{
-        foreach (Promocao p in Model.Promocoes)
+        foreach (Deal p in Model.Promocoes)
         {
             <div class="card" style="width: 18rem; margin-bottom:3%;">
-                <img class="card-img-top" src="~/Assets/gameImg.jpg" alt="Card image cap">
+                <img class="card-img-top" src="@p.Game.THUMBNAIL_LINK" alt="Card image cap">
                 <div class="card-body">
-                    <h5 class="card-title">@p.Nome</h5>
-                    <p>@p.Descricao</p>
+                    <h5 class="card-title">@p.Game.TITLE</h5>
                 </div>
                 <div class="card-body">
-                    <a class="text-primary"><strong>R$@p.ValorDesconto</strong></a>
-                    <a class="text-danger"><del>R$@p.ValorOriginal</del></a>
+                    <a class="text-primary"><strong>R$@((float)p.SALE_PRICE)</strong></a>
+                    <a class="text-danger"><del>R$@p.Game.PRICE</del></a>
                 </div>
             </div>
         }
